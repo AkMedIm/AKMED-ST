@@ -1,0 +1,15 @@
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\AkMed App Design.exe.config
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\AkMed App Design.exe
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\AkMed App Design.pdb
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed App Design.csprojResolveAssemblyReference.cache
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed_App_Design.Form1.resources
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed_App_Design.Properties.Resources.resources
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed App Design.csproj.GenerateResource.Cache
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed App Design.exe
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed App Design.pdb
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\inventaire.mdf
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\inventaire_log.ldf
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\EntityFramework.dll
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\EntityFramework.xml
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\fr\EntityFramework.resources.dll
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed_App_Design.STOCK.resources
