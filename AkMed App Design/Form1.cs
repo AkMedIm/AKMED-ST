@@ -224,6 +224,10 @@ namespace AkMed_App_Design
 
         private void pictureBox11_Click(object sender, EventArgs e)
         {
+            int i = 0;
+            DateTime today = DateTime.Today;
+            TODAYDATE.Text = today.ToString("yyyy-MM-dd");
+
             UserLine.Hide();
             UnitesLine.Hide();
             VentesLine.Hide();
@@ -233,6 +237,9 @@ namespace AkMed_App_Design
             ProduitLine.Hide();
             Statistiques.BringToFront();
 
+
+            //==> TOP 5 PRODUCTS
+
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select top(5) product, SUM(Total)  from Commande GROUP BY  product  order by SUM(Total) desc";
@@ -241,6 +248,25 @@ namespace AkMed_App_Design
             SqlDataAdapter da9 = new SqlDataAdapter(cmd);
             da9.Fill(dt9);
             dataGridView5.DataSource = dt9;
+
+
+            //==> NUMBER OF ORDERS DONE TODAY
+
+
+            SqlCommand cmd1 = con.CreateCommand();
+            cmd1.CommandType = CommandType.Text;
+            cmd1.CommandText = "SELECT COUNT(id) FROM Commande WHERE ComDate ='"+TODAYDATE.Text+"'";
+            cmd1.ExecuteNonQuery();
+            DataTable dt11 = new DataTable();
+            SqlDataAdapter da11 = new SqlDataAdapter(cmd1);
+            da11.Fill(dt11);
+            dataGridView6.DataSource = dt11;
+            NumCommande.Text = dataGridView6.Rows[0].Cells[0].Value.ToString();
+
+            //==> 
+
+            MonthNow1.Text = DateTime.Now.ToString("MMMM");
+            MonthNow2.Text = DateTime.Now.ToString("MMMM");
         }
 
         //Ventes
@@ -991,7 +1017,7 @@ namespace AkMed_App_Design
 
             SqlCommand cmd2 = con.CreateCommand();
             cmd2.CommandType = CommandType.Text;
-            cmd2.CommandText = "insert into Commande values ('" +orderid.ToString()+ "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','"+dr["Total"].ToString()+"')";
+            cmd2.CommandText = "insert into Commande values ('" +orderid.ToString()+ "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','"+dr["Total"].ToString()+"' , '"+DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
             cmd2.ExecuteNonQuery();
 
 
@@ -1011,6 +1037,11 @@ namespace AkMed_App_Design
             TypePaiement.SelectedItem = null;
             MessageBox.Show("Récord ajouté avec succes!");
 
+        }
+
+        private void dataGridView5_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            this.dataGridView5.Rows[e.RowIndex].Cells["No"].Value = (e.RowIndex + 1).ToString();
         }
 
        
