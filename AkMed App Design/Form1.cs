@@ -261,7 +261,7 @@ namespace AkMed_App_Design
             DataTable dt11 = new DataTable();
             SqlDataAdapter da11 = new SqlDataAdapter(cmd1);
             da11.Fill(dt11);
-            dataGridView6.DataSource = dt11;
+           // dataGridView6.DataSource = dt11;
             NumCommande.Text = dt11.Rows[0][0].ToString();
             NumProducts.Text = dt11.Rows[0][1].ToString();
             ClientsToday.Text = dt11.Rows[0][2].ToString();

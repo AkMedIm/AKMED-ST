@@ -46,6 +46,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Header = new System.Windows.Forms.Panel();
             this.logout = new System.Windows.Forms.PictureBox();
             this.labelBELL = new System.Windows.Forms.Label();
@@ -83,7 +86,6 @@
             this.WaveHand = new System.Windows.Forms.PictureBox();
             this.Welcoming = new System.Windows.Forms.Label();
             this.Statistiques = new System.Windows.Forms.Panel();
-            this.dataGridView6 = new System.Windows.Forms.DataGridView();
             this.TODAYDATE = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -277,6 +279,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.WaitingTimer = new System.Windows.Forms.Timer(this.components);
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Header.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
@@ -298,7 +301,6 @@
             this.WelcomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WaveHand)).BeginInit();
             this.Statistiques.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
@@ -348,6 +350,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_LOCK)).BeginInit();
             this.Waiting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // Header
@@ -731,8 +734,8 @@
             // Contenu
             // 
             this.Contenu.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.Contenu.Controls.Add(this.WelcomePage);
             this.Contenu.Controls.Add(this.Statistiques);
+            this.Contenu.Controls.Add(this.WelcomePage);
             this.Contenu.Controls.Add(this.Ventes);
             this.Contenu.Controls.Add(this.Achats);
             this.Contenu.Controls.Add(this.Utilisateurs);
@@ -781,14 +784,13 @@
             // Statistiques
             // 
             this.Statistiques.BackColor = System.Drawing.Color.Transparent;
-            this.Statistiques.Controls.Add(this.dataGridView6);
+            this.Statistiques.Controls.Add(this.chart1);
             this.Statistiques.Controls.Add(this.TODAYDATE);
             this.Statistiques.Controls.Add(this.label12);
             this.Statistiques.Controls.Add(this.label11);
             this.Statistiques.Controls.Add(this.label10);
             this.Statistiques.Controls.Add(this.label9);
             this.Statistiques.Controls.Add(this.label7);
-            this.Statistiques.Controls.Add(this.pictureBox30);
             this.Statistiques.Controls.Add(this.pictureBox29);
             this.Statistiques.Controls.Add(this.pictureBox28);
             this.Statistiques.Controls.Add(this.pictureBox27);
@@ -817,19 +819,12 @@
             this.Statistiques.Controls.Add(this.pictureBox22);
             this.Statistiques.Controls.Add(this.pictureBox40);
             this.Statistiques.Controls.Add(this.dataGridView5);
+            this.Statistiques.Controls.Add(this.pictureBox30);
             this.Statistiques.Location = new System.Drawing.Point(0, 0);
             this.Statistiques.Name = "Statistiques";
             this.Statistiques.Size = new System.Drawing.Size(1187, 577);
             this.Statistiques.TabIndex = 6;
             this.Statistiques.Tag = "-----";
-            // 
-            // dataGridView6
-            // 
-            this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView6.Location = new System.Drawing.Point(545, 323);
-            this.dataGridView6.Name = "dataGridView6";
-            this.dataGridView6.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView6.TabIndex = 37;
             // 
             // TODAYDATE
             // 
@@ -904,10 +899,10 @@
             // 
             this.pictureBox30.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox30.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox30.Image")));
-            this.pictureBox30.Location = new System.Drawing.Point(811, 238);
+            this.pictureBox30.Location = new System.Drawing.Point(834, 17);
             this.pictureBox30.Name = "pictureBox30";
-            this.pictureBox30.Size = new System.Drawing.Size(540, 459);
-            this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox30.Size = new System.Drawing.Size(595, 599);
+            this.pictureBox30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox30.TabIndex = 28;
             this.pictureBox30.TabStop = false;
             // 
@@ -3206,15 +3201,41 @@
             this.WaitingTimer.Interval = 500;
             this.WaitingTimer.Tick += new System.EventHandler(this.WaitingTimer_Tick);
             // 
+            // chart1
+            // 
+            this.chart1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.chart1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.LeftRight;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(549, 272);
+            this.chart1.Name = "chart1";
+            series1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.LeftRight;
+            series1.BackImageTransparentColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Red;
+            series1.Legend = "Legend1";
+            series1.MarkerColor = System.Drawing.Color.Transparent;
+            series1.Name = "Series1";
+            series1.ShadowColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Date;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(549, 300);
+            this.chart1.TabIndex = 37;
+            this.chart1.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1187, 726);
+            this.Controls.Add(this.Contenu);
             this.Controls.Add(this.Login);
             this.Controls.Add(this.Waiting);
-            this.Controls.Add(this.Contenu);
             this.Controls.Add(this.Header);
             this.Controls.Add(this.Contact);
             this.Controls.Add(this.About);
@@ -3248,7 +3269,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.WaveHand)).EndInit();
             this.Statistiques.ResumeLayout(false);
             this.Statistiques.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
@@ -3312,6 +3332,7 @@
             this.Waiting.ResumeLayout(false);
             this.Waiting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3549,7 +3570,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.Label TODAYDATE;
-        private System.Windows.Forms.DataGridView dataGridView6;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 
