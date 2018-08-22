@@ -30,6 +30,8 @@ namespace AkMed_App_Design
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'inventaireDataSet.Commande' table. You can move, or remove it, as needed.
+            this.commandeTableAdapter.Fill(this.inventaireDataSet.Commande);
 //________________________________________________
 
             /** The Connection **/
@@ -296,6 +298,20 @@ namespace AkMed_App_Design
 
             MonthNow1.Text = DateTime.Now.ToString("MMMM");
             MonthNow2.Text = DateTime.Now.ToString("MMMM");
+
+
+
+            //==> CHART
+
+
+/*            SqlCommand cmd4 = con.CreateCommand();
+            cmd4.CommandType = CommandType.Text;
+            cmd4.CommandText = "SELECT Total FROM Commande ";
+            cmd4.ExecuteNonQuery();
+            DataTable dt4 = new DataTable();
+            SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
+            da4.Fill(dt4);*/
+
         }
 
         //Ventes
