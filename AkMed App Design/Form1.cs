@@ -227,6 +227,7 @@ namespace AkMed_App_Design
             int i = 0;
             DateTime today = DateTime.Today;
             TODAYDATE.Text = today.ToString("yyyy-MM-dd");
+          //  TODAYDATE.Text = DateTime.Now.ToLongDateString();
 
             UserLine.Hide();
             UnitesLine.Hide();
@@ -255,15 +256,43 @@ namespace AkMed_App_Design
 
             SqlCommand cmd1 = con.CreateCommand();
             cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = "SELECT COUNT(id) FROM Commande WHERE ComDate ='"+TODAYDATE.Text+"'";
+            cmd1.CommandText = "SELECT COUNT( DISTINCT id), COUNT(DISTINCT product), COUNT( DISTINCT order_id), SUM(Total)  FROM Commande  WHERE ComDate ='" + TODAYDATE.Text + "'";
             cmd1.ExecuteNonQuery();
             DataTable dt11 = new DataTable();
             SqlDataAdapter da11 = new SqlDataAdapter(cmd1);
             da11.Fill(dt11);
             dataGridView6.DataSource = dt11;
-            NumCommande.Text = dataGridView6.Rows[0].Cells[0].Value.ToString();
+            NumCommande.Text = dt11.Rows[0][0].ToString();
+            NumProducts.Text = dt11.Rows[0][1].ToString();
+            ClientsToday.Text = dt11.Rows[0][2].ToString();
+            TotalAmountToday.Text=dt11.Rows[0][3].ToString();
+
+            //==> NUMBER OF CLIENTS AND PRODUCTS MONTH
+
+
+            SqlCommand cmd2 = con.CreateCommand();
+            cmd2.CommandType = CommandType.Text;
+            cmd2.CommandText = "SELECT COUNT(DISTINCT product), COUNT( DISTINCT order_id)  FROM Commande  WHERE month(ComDate) ='" + DateTime.Now.Month+ "'";
+            cmd2.ExecuteNonQuery();
+            DataTable dt3 = new DataTable();
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd2);
+            da3.Fill(dt3);
+            NumProdMonth.Text= dt3.Rows[0][0].ToString();
+            NumClientMonth.Text = dt3.Rows[0][1].ToString();
+
 
             //==> 
+
+        /*    SqlCommand cmd2 = con.CreateCommand();
+            cmd2.CommandType = CommandType.Text;
+            cmd2.CommandText = "SELECT COUNT(product) FROM Commande WHERE ComDate ='" + TODAYDATE.Text + "'";
+            cmd2.ExecuteNonQuery();
+            DataTable dt10 = new DataTable();
+            SqlDataAdapter da10 = new SqlDataAdapter(cmd2);
+            da11.Fill(dt10);
+           // dataGridView6.DataSource = dt10;*/
+          //  NumCommande.Text = dataGridView6.Rows[0].Cells[0].Value.ToString();
+
 
             MonthNow1.Text = DateTime.Now.ToString("MMMM");
             MonthNow2.Text = DateTime.Now.ToString("MMMM");
@@ -1039,6 +1068,8 @@ namespace AkMed_App_Design
 
         }
 
+        // Serial Number of TOP 5 PRODUCTS
+         
         private void dataGridView5_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             this.dataGridView5.Rows[e.RowIndex].Cells["No"].Value = (e.RowIndex + 1).ToString();
