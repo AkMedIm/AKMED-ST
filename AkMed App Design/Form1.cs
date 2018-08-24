@@ -30,6 +30,8 @@ namespace AkMed_App_Design
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'inventaireDataSet1.v_Sales' table. You can move, or remove it, as needed.
+            this.v_SalesTableAdapter.Fill(this.inventaireDataSet1.v_Sales);
             // TODO: This line of code loads data into the 'inventaireDataSet.Commande' table. You can move, or remove it, as needed.
             this.commandeTableAdapter.Fill(this.inventaireDataSet.Commande);
 //________________________________________________
@@ -281,6 +283,25 @@ namespace AkMed_App_Design
             da3.Fill(dt3);
             NumProdMonth.Text= dt3.Rows[0][0].ToString();
             NumClientMonth.Text = dt3.Rows[0][1].ToString();
+
+            //==> Linear Chart datatable
+
+           /*  SqlCommand cmd3 = con.CreateCommand();
+            cmd3.CommandType = CommandType.Text;
+            cmd3.CommandText = "select Distinct ComDate, SUM(Total) from Commande group by ComDate";
+            cmd3.ExecuteNonQuery();
+            DataTable dt4 = new DataTable();
+            SqlDataAdapter da4 = new SqlDataAdapter(cmd3);
+            da4.Fill(dt4);*/
+            /*chart2.DataSource = v_SalesTableAdapter;
+
+            
+
+            chart2.Series["Series1"].XValueMember= "ComDate";
+            chart2.Series["Series1"].YValueMembers =" Total";
+
+
+            chart2.DataBind();*/
 
 
             //==> 
@@ -1045,7 +1066,7 @@ namespace AkMed_App_Design
 
             SqlCommand cmd1 = con.CreateCommand();
             cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = "select top 1 * from Commande order by id desc";
+            cmd1.CommandText = "select top(1)* from Commande order by id desc";
             cmd1.ExecuteNonQuery();
             DataTable dt9 = new DataTable();
             SqlDataAdapter da9 = new SqlDataAdapter(cmd1);
@@ -1062,7 +1083,7 @@ namespace AkMed_App_Design
 
             SqlCommand cmd2 = con.CreateCommand();
             cmd2.CommandType = CommandType.Text;
-            cmd2.CommandText = "insert into Commande values ('" +orderid.ToString()+ "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','"+dr["Total"].ToString()+"' , '"+DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
+            cmd2.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "' , '" + PrenomClient.Text + "','" + NomClient.Text + "','" + TypePaiement.SelectedItem.ToString() + "')";
             cmd2.ExecuteNonQuery();
 
 
@@ -1080,7 +1101,12 @@ namespace AkMed_App_Design
             PrenomClient.Clear();
             NomClient.Clear();
             TypePaiement.SelectedItem = null;
+            dt.Clear();
+            VenteGridView.DataSource = dt;
             MessageBox.Show("Récord ajouté avec succes!");
+            CommandeBILL bill = new CommandeBILL();
+            bill.get_value(Convert.ToInt32( orderid.ToString()));
+            bill.Show();
 
         }
 
