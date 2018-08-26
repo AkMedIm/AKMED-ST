@@ -1182,7 +1182,7 @@ namespace AkMed_App_Design
 
             SqlCommand cmd1 = con.CreateCommand();
             cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = "select top 1 * from Client where id= IDENT_CURRENT('Client')";
+            cmd1.CommandText = "select  * from Client where id= IDENT_CURRENT('Client')";
             cmd1.ExecuteNonQuery();
             DataTable dt9 = new DataTable();
             SqlDataAdapter da9 = new SqlDataAdapter(cmd1);
@@ -1199,7 +1199,7 @@ namespace AkMed_App_Design
 
                 SqlCommand cmd2 = con.CreateCommand();
                 cmd2.CommandType = CommandType.Text;
-                cmd2.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "' , '" + PrenomClient.Text + "','" + NomClient.Text + "','" + TypePaiement.SelectedItem.ToString() + "')";
+                cmd2.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
                 cmd2.ExecuteNonQuery();
 
 
