@@ -16,14 +16,14 @@ namespace AkMed_App_Design {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport3 : ReportClass {
+    public class CrystalReport1 : ReportClass {
         
-        public CrystalReport3() {
+        public CrystalReport1() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport3.rpt";
+                return "CrystalReport1.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace AkMed_App_Design {
         
         public override string FullResourceName {
             get {
-                return "AkMed_App_Design.CrystalReport3.rpt";
+                return "AkMed_App_Design.CrystalReport1.rpt";
             }
             set {
                 // Do nothing
@@ -90,7 +90,7 @@ namespace AkMed_App_Design {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_total {
+        public CrystalDecisions.Shared.IParameterField Parameter_Total {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
@@ -98,9 +98,9 @@ namespace AkMed_App_Design {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport3 : Component, ICachedReport {
+    public class CachedCrystalReport1 : Component, ICachedReport {
         
-        public CachedCrystalReport3() {
+        public CachedCrystalReport1() {
         }
         
         [Browsable(false)]
@@ -137,7 +137,7 @@ namespace AkMed_App_Design {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport3 rpt = new CrystalReport3();
+            CrystalReport1 rpt = new CrystalReport1();
             rpt.Site = this.Site;
             return rpt;
         }

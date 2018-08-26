@@ -94,15 +94,20 @@ namespace AkMed_App_Design
         private void timer1_Tick(object sender, EventArgs e)
         {
             counter++;
-
-            if(counter >= 17)
+            utilisateurname.Hide();
+            utilisateurfname.Hide();
+            if(counter >= 11)
             {
                 timer1.Stop();
                 WaveHand.Show();
+               utilisateurname.Show();
+               utilisateurfname.Show();
+
             }
             else
             {
                 Welcoming.Text = txt.Substring(0, counter);
+                //utilisateurname.Show();
             }
             
 
@@ -432,6 +437,7 @@ namespace AkMed_App_Design
         {
             
             int i = 0;
+            string Mode;
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from registration where login='" + LoginBox.Text + "' and motdepasse='" + PassBox.Text + "' ";
@@ -440,13 +446,28 @@ namespace AkMed_App_Design
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             da.Fill(dt);
             i = Convert.ToInt32(dt.Rows.Count.ToString());
+          
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Mode= dr["UserMode"].ToString();
+                UserMod.Text = Mode.ToString();
+                utilisateurname.Text = dr["nom"].ToString();
+                utilisateurfname.Text=dr["prenom"].ToString();
+            }
+
+            
+
             if (i == 0)
             {
                 WrongFill.Visible = true;
                // MessageBox.Show("This username password does not match");
             }
-            else
+    
+
+            else if(UserMod.Text=="Admin") 
             {
+
                 Login.Hide();
                 LoginBox.Clear();
                 PassBox.Clear();
@@ -456,11 +477,43 @@ namespace AkMed_App_Design
                 WaitingTimer.Start();
                 WrongFill.Visible = false;
             }
+            else
+            {
+               // button1.Enabled = false;
+               // SupprimerCommande.Enabled = false;
+               // commander.Enabled = false;
+                ajoutstock.Enabled = false;
+                Ajouterbutton.Enabled = false;
+                Annulation.Enabled = false;
+                Moduser.Enabled = false;
+                Suppbutton.Enabled = false;
+                DelDealer.Enabled = false;
+                SaveDealer.Enabled = false;
+                SupprimerUnite.Enabled = false;
+                AjouterUnite.Enabled = false;
+                Delbutton.Enabled = false;
+                Modbutton.Enabled = false;
+                AjoutButton.Enabled = false;
+
+
+                Login.Hide();
+                LoginBox.Clear();
+                PassBox.Clear();
+                WelcomePage.BringToFront();
+                Header.Show();
+                Waiting.Show();
+                WaitingTimer.Start();
+                WrongFill.Visible = false;
+
+            }
             
         }
 
         private void WaitingTimer_Tick(object sender, EventArgs e)
         {
+
+           
+
             compteur++;
             if(compteur >= 5)
             {
@@ -1057,16 +1110,79 @@ namespace AkMed_App_Design
 
         private void EnregistrerETimprimer_Click(object sender, EventArgs e)
         {
-            string orderid="";
+            //string orderid="";
+
+            //SqlCommand cmd = con.CreateCommand();
+            //cmd.CommandType = CommandType.Text;
+            //cmd.CommandText = "insert into Client values ('" +PrenomClient.Text+ "','" +NomClient.Text+ "','" + TypePaiement.SelectedItem.ToString() + "','" + DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
+            //cmd.ExecuteNonQuery();
+
+            //SqlCommand cmd1 = con.CreateCommand();
+            //cmd1.CommandType = CommandType.Text;
+            //cmd1.CommandText = "select top(1)* from Commande order by id desc";
+            //cmd1.ExecuteNonQuery();
+            //DataTable dt9 = new DataTable();
+            //SqlDataAdapter da9 = new SqlDataAdapter(cmd1);
+            //da9.Fill(dt9);
+            //foreach (DataRow dr9 in dt9.Rows)
+            //{
+            //    orderid = dr9["id"].ToString();
+            //}
+
+            //foreach (DataRow dr in dt.Rows)
+            //{
+            //    int qty = 0;
+            //    string pname = "";
+
+            //SqlCommand cmd2 = con.CreateCommand();
+            //cmd2.CommandType = CommandType.Text;
+            //cmd2.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "' , '" + PrenomClient.Text + "','" + NomClient.Text + "','" + TypePaiement.SelectedItem.ToString() + "')";
+            //cmd2.ExecuteNonQuery();
+
+
+            //qty = Convert.ToInt32(dr["Quantité"].ToString());
+            //pname = dr["Produit"].ToString();
+                    
+
+            //SqlCommand cmd3 = con.CreateCommand();
+            //cmd3.CommandType = CommandType.Text;
+            //cmd3.CommandText = "update stock set productQuantity = productQuantity -" + qty + " where productName='" + pname.ToString() + "'";
+            //cmd3.ExecuteNonQuery();
+            //}
+
+            
+            //PrenomClient.Clear();
+            //NomClient.Clear();
+            //TypePaiement.SelectedItem = null;
+            //dt.Clear();
+            //VenteGridView.DataSource = dt;
+            //MessageBox.Show("Récord ajouté avec succes!");
+            //CommandeBILL bill = new CommandeBILL();
+            //bill.get_value(Convert.ToInt32( orderid.ToString()));
+            //bill.Show();
+
+        }
+
+        // Serial Number of TOP 5 PRODUCTS
+         
+        private void dataGridView5_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            this.dataGridView5.Rows[e.RowIndex].Cells["No"].Value = (e.RowIndex + 1).ToString();
+        }
+
+        // ****
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string orderid = "";
 
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "insert into Client values ('" +PrenomClient.Text+ "','" +NomClient.Text+ "','" + TypePaiement.SelectedItem.ToString() + "','" + DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
+            cmd.CommandText = "insert into Client values ('" + PrenomClient.Text + "','" + NomClient.Text + "','" + TypePaiement.SelectedItem.ToString() + "','" + DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
             cmd.ExecuteNonQuery();
 
             SqlCommand cmd1 = con.CreateCommand();
             cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = "select top(1)* from Commande order by id desc";
+            cmd1.CommandText = "select top 1 * from Client where id= IDENT_CURRENT('Client')";
             cmd1.ExecuteNonQuery();
             DataTable dt9 = new DataTable();
             SqlDataAdapter da9 = new SqlDataAdapter(cmd1);
@@ -1081,41 +1197,37 @@ namespace AkMed_App_Design
                 int qty = 0;
                 string pname = "";
 
-            SqlCommand cmd2 = con.CreateCommand();
-            cmd2.CommandType = CommandType.Text;
-            cmd2.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "' , '" + PrenomClient.Text + "','" + NomClient.Text + "','" + TypePaiement.SelectedItem.ToString() + "')";
-            cmd2.ExecuteNonQuery();
+                SqlCommand cmd2 = con.CreateCommand();
+                cmd2.CommandType = CommandType.Text;
+                cmd2.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "' , '" + PrenomClient.Text + "','" + NomClient.Text + "','" + TypePaiement.SelectedItem.ToString() + "')";
+                cmd2.ExecuteNonQuery();
 
 
-            qty = Convert.ToInt32(dr["Quantité"].ToString());
-            pname = dr["Produit"].ToString();
-                    
+                qty = Convert.ToInt32(dr["Quantité"].ToString());
+                pname = dr["Produit"].ToString();
 
-            SqlCommand cmd3 = con.CreateCommand();
-            cmd3.CommandType = CommandType.Text;
-            cmd3.CommandText = "update stock set productQuantity = productQuantity -" + qty + " where productName='" + pname.ToString() + "'";
-            cmd3.ExecuteNonQuery();
+
+                SqlCommand cmd3 = con.CreateCommand();
+                cmd3.CommandType = CommandType.Text;
+                cmd3.CommandText = "update stock set productQuantity = productQuantity -" + qty + " where productName='" + pname.ToString() + "'";
+                cmd3.ExecuteNonQuery();
             }
 
-            
-            PrenomClient.Clear();
-            NomClient.Clear();
-            TypePaiement.SelectedItem = null;
+
+            PrenomClient.Text="";
+            NomClient.Text="";
+            labelTotal.Text = "";
+           // TypePaiement.SelectedItem = null;
             dt.Clear();
             VenteGridView.DataSource = dt;
             MessageBox.Show("Récord ajouté avec succes!");
-            CommandeBILL bill = new CommandeBILL();
-            bill.get_value(Convert.ToInt32( orderid.ToString()));
+
+            billingcs bill = new billingcs();
+            bill.get_value(Convert.ToInt32(orderid.ToString()));
             bill.Show();
 
         }
-
-        // Serial Number of TOP 5 PRODUCTS
-         
-        private void dataGridView5_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
-        {
-            this.dataGridView5.Rows[e.RowIndex].Cells["No"].Value = (e.RowIndex + 1).ToString();
-        }
+        
 
        
        

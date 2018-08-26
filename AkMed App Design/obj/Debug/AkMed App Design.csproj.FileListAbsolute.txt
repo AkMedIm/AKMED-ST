@@ -13,6 +13,6 @@ D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App 
 D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\EntityFramework.xml
 D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\fr\EntityFramework.resources.dll
 D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed_App_Design.STOCK.resources
-D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed_App_Design.CommandeBILL.resources
-D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\RdlCompile.cache
-D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\RdlCompile.compiled
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\Dapper.dll
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\bin\Debug\Dapper.pdb
+D:\BET TECHNOSPIDER\Gestion de Stock C# & SQL Server\AkMed App Design\AkMed App Design\obj\Debug\AkMed_App_Design.billingcs.resources
