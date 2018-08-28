@@ -70,7 +70,11 @@ namespace AkMed_App_Design
             report.SetDataSource(ds);
             report.SetParameterValue("Total",tot.ToString());
             crystalReportViewer1.ReportSource = report;
-            crystalReportViewer1.Refresh();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
     }

@@ -1182,7 +1182,8 @@ namespace AkMed_App_Design
 
             SqlCommand cmd1 = con.CreateCommand();
             cmd1.CommandType = CommandType.Text;
-            cmd1.CommandText = "select  * from Client where id= IDENT_CURRENT('Client')";
+            //cmd1.CommandText = "select  * from Client where id= IDENT_CURRENT('Client')";
+            cmd1.CommandText = "select top 1 * from Client order by id desc";
             cmd1.ExecuteNonQuery();
             DataTable dt9 = new DataTable();
             SqlDataAdapter da9 = new SqlDataAdapter(cmd1);
@@ -1197,26 +1198,26 @@ namespace AkMed_App_Design
                 int qty = 0;
                 string pname = "";
 
-                SqlCommand cmd2 = con.CreateCommand();
-                cmd2.CommandType = CommandType.Text;
-                cmd2.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
-                cmd2.ExecuteNonQuery();
+                SqlCommand cmd3 = con.CreateCommand();
+                cmd3.CommandType = CommandType.Text;
+                cmd3.CommandText = "insert into Commande values ('" + orderid.ToString() + "','" + dr["Produit"].ToString() + "','" + dr["Prix"].ToString() + "','" + dr["Quantité"].ToString() + "','" + dr["Total"].ToString() + "' , '" + DatePaiement.Value.ToString("yyyy-MM-dd") + "')";
+                cmd3.ExecuteNonQuery();
 
 
                 qty = Convert.ToInt32(dr["Quantité"].ToString());
                 pname = dr["Produit"].ToString();
 
 
-                SqlCommand cmd3 = con.CreateCommand();
-                cmd3.CommandType = CommandType.Text;
-                cmd3.CommandText = "update stock set productQuantity = productQuantity -" + qty + " where productName='" + pname.ToString() + "'";
-                cmd3.ExecuteNonQuery();
+                SqlCommand cmd4 = con.CreateCommand();
+                cmd4.CommandType = CommandType.Text;
+                cmd4.CommandText = "update stock set productQuantity = productQuantity -" + qty + " where productName='" + pname.ToString() + "'";
+                cmd4.ExecuteNonQuery();
             }
 
 
-            PrenomClient.Text="";
+           /* PrenomClient.Text="";
             NomClient.Text="";
-            labelTotal.Text = "";
+            labelTotal.Text = "";*/
            // TypePaiement.SelectedItem = null;
             dt.Clear();
             VenteGridView.DataSource = dt;
