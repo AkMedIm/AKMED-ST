@@ -498,7 +498,7 @@ namespace AkMed_App_Design
                 AjoutButton.Enabled = false;
                 UserAddPanel.Enabled = false;
                 Fournisseurs.Enabled = false;
-              //  pictureBox5.Enabled = false; // User Panel
+                pictureBox5.Visible = false;
 
 
                 Login.Hide();
