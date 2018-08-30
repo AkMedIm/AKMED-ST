@@ -467,7 +467,7 @@ namespace AkMed_App_Design
 
             else if(UserMod.Text=="Admin") 
             {
-
+                UsersSecurity.Hide();
                 Login.Hide();
                 LoginBox.Clear();
                 PassBox.Clear();
@@ -482,6 +482,8 @@ namespace AkMed_App_Design
                // button1.Enabled = false;
                // SupprimerCommande.Enabled = false;
                // commander.Enabled = false;
+                dataGridView1.Hide();
+                UsersSecurity.Show();
                 ajoutstock.Enabled = false;
                 Ajouterbutton.Enabled = false;
                 Annulation.Enabled = false;
@@ -494,6 +496,9 @@ namespace AkMed_App_Design
                 Delbutton.Enabled = false;
                 Modbutton.Enabled = false;
                 AjoutButton.Enabled = false;
+                UserAddPanel.Enabled = false;
+                Fournisseurs.Enabled = false;
+              //  pictureBox5.Enabled = false; // User Panel
 
 
                 Login.Hide();
